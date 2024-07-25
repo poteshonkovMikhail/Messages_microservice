@@ -7,6 +7,7 @@ go 1.22
 
 require (
 	github.com/gorilla/mux v1.8.1 // direct
+<<<<<<< HEAD
 	github.com/lib/pq v1.10.9 // direct
 )
 
@@ -42,4 +43,11 @@ require (
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+=======
+	github.com/jackc/pgx v3.6.2+incompatible // direct
+	github.com/lib/pq v1.10.9 // direct
+	github.com/pkg/errors v0.9.1 // direct
+	golang.org/x/crypto v0.25.0 // direct
+	golang.org/x/text v0.16.0 // direct
+>>>>>>> 594ac8d977178eac22758db0cef08b56fb4fa095
 )
