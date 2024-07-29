@@ -4,8 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 // var messge Message
@@ -19,7 +21,7 @@ func main() {
 	initKafka()
 	defer kafkaProducer.Close()
 
-	go launchConsumer()
+	go startConsumer(brokers, os.Getenv("KAFKA_TOPIC"))
 
 	//go launchConsumer(id)
 
@@ -27,8 +29,19 @@ func main() {
 
 	router.HandleFunc("/messages", createMessageHandler).Methods("POST")
 	router.HandleFunc("/statistics", getStatisticsHandler).Methods("GET")
+	// Создаем CORS-миддлвар
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},                      // Разрешенные источники, можно указать конкретные домены вместо "*"
+		AllowedMethods:   []string{"GET", "POST", "OPTIONS"}, // Разрешенные методы
+		AllowedHeaders:   []string{"Content-Type"},           // Разрешенные заголовки
+		AllowCredentials: true,                               // Разрешить передавать куки
+	})
 
-	http.ListenAndServe(":8080", router)
+	// Оборачиваем маршрутизатор в CORS-миддлвар
+	handler := c.Handler(router)
+
+	// Запускаем сервер с обработчиком CORS
+	http.ListenAndServe(":8080", handler)
 
 }
 

@@ -89,14 +89,8 @@ func startConsumer(brokers []string, topic string) {
 		log.Println("Получен сигнал завершения работы")
 		cancel()
 		close(done)
-		log.Fatalf("Программа завершена")
+		log.Println("Программа завершена")
 	case <-ctx.Done():
 		log.Println("Контекст завершён")
 	}
-}
-
-func launchConsumer() {
-	brokers := []string{"localhost:9092"}
-	topic := "MsgTopic"
-	startConsumer(brokers, topic)
 }

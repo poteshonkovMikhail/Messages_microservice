@@ -7,7 +7,6 @@ go 1.22
 
 require (
 	github.com/gorilla/mux v1.8.1 // direct
-<<<<<<< HEAD
 	github.com/lib/pq v1.10.9 // direct
 )
 
@@ -39,15 +38,9 @@ require (
 	github.com/klauspost/compress v1.17.8 // indirect
 	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	github.com/rs/cors v1.11.0 // indirect
 	github.com/segmentio/kafka-go v0.4.47 // indirect
 	golang.org/x/crypto v0.22.0 // indirect
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-=======
-	github.com/jackc/pgx v3.6.2+incompatible // direct
-	github.com/lib/pq v1.10.9 // direct
-	github.com/pkg/errors v0.9.1 // direct
-	golang.org/x/crypto v0.25.0 // direct
-	golang.org/x/text v0.16.0 // direct
->>>>>>> 594ac8d977178eac22758db0cef08b56fb4fa095
 )

@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-
 	"log"
+	"os"
 
 	"github.com/jackc/pgx/v4"
 )
@@ -12,7 +12,7 @@ var db *pgx.Conn
 
 func initDB() {
 	var err error
-	db, err = pgx.Connect(context.Background(), "postgres://postgres:workout+5@localhost:5432/messages_microservice_db")
+	db, err = pgx.Connect(context.Background(), "postgres://"+os.Getenv("DB_USER")+":"+os.Getenv("DB_PASSWORD")+"@"+os.Getenv("DB_HOST")+":5432/"+os.Getenv("DB_NAME"))
 	if err != nil {
 		log.Fatalf("unable to connect to database: %v", err)
 	}

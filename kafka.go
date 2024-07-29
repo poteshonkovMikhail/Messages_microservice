@@ -2,12 +2,13 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/IBM/sarama"
 )
 
 var kafkaProducer sarama.SyncProducer
-var brokers = []string{"localhost:9092"}
+var brokers = []string{os.Getenv("KAFKA_HOST")}
 
 func initKafka() {
 	var err error
@@ -20,7 +21,7 @@ func initKafka() {
 
 func sendMessage(content string, id int32) error {
 	msg := &sarama.ProducerMessage{
-		Topic: "MsgTopic",
+		Topic: os.Getenv("KAFKA_TOPIC"),
 		Value: sarama.StringEncoder(content),
 	}
 	partition, offset, err := kafkaProducer.SendMessage(msg)
